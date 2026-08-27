@@ -1,13 +1,13 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/matrix_transform.h> // Fixed: Included required header for the RC macro
 
 / {
-    // Soft-off behavior and key
     behaviors {
         soft_off_with_wakeup: soft_off_with_wakeup {
             compatible = "zmk,behavior-soft-off";
             #binding-cells = <0>;
-            wakeup-source-positions = <0>;
+            wakeup-source-positions = <RC(0, 0)>; // Target: Row 1, Col 1 (The Q key)
         };
     };
     
@@ -17,16 +17,16 @@
         default_layer {
             bindings = <
                 // Row 1: 11 Physical Keys
-                &kp Q   &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &bootloader
+                &kp Q     &kp W     &kp E          &kp R     &kp T          &kp Y        &kp U     &kp I     &kp O     &kp P                 &bootloader
                 
                 // Row 2: 10 Physical Keys + 1 Spacer Matrix Block
-                &kp A   &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SINGLE_QUOTE     &none
+                &kp A     &kp S     &kp D          &kp F     &kp G          &kp H        &kp J     &kp K     &kp L     &kp SINGLE_QUOTE      &none
                 
-                // Row 3: 10 Physical Keys + 1 Spacer Matrix Block
-                &kp Z &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA     &kp DOT &kp soft_off   &none
+                // Row 3: 10 Physical Keys + 1 Spacer Matrix Block (Fixed: changed to custom behavior name)
+                &kp Z     &kp X     &kp C          &kp V     &kp B          &kp N        &kp M     &kp COMMA &kp DOT   &soft_off_with_wakeup &none
                 
-                // Row 4: 6 Physical Keys + 5 Spacer Matrix Blocks
-                &kp LCTRL &kp LGUI  &kp BACKSPACE  &kp SPACE &kp &bootloader  &kp &reset &none     &none     &none     &none     &none
+                // Row 4: 6 Physical Keys + 5 Spacer Matrix Blocks (Fixed: removed double ampersands and fixed sys_reset)
+                &kp LCTRL &kp LGUI  &kp BACKSPACE  &kp SPACE &kp bootloader &sys_reset   &none     &none     &none     &none                 &none
             >;
         };
     };
