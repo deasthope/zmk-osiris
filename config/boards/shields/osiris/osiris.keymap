@@ -7,7 +7,7 @@
         soft_off_with_wakeup: soft_off_with_wakeup {
             compatible = "zmk,behavior-soft-off";
             #binding-cells = <0>;
-            wakeup-source-positions = <0 0>;
+            wakeup-source-positions = <0>;
         };
     };
     
