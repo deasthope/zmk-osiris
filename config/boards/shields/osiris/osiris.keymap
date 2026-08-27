@@ -44,7 +44,7 @@
                 &kp A     &kp S     &kp D          &kp F     &kp G          &kp H        &kp J     &kp K     &kp L     &kp SINGLE_QUOTE      &none
                 
                 // Row 3: 10 Physical Keys + 1 Spacer Matrix Block
-                &kp Z     &kp X     &kp C          &kp V     &kp B          &kp N        &kp M     &kp COMMA &kp DOT   &soft_off_with_wakeup &none
+                &kp Z     &kp X     &kp C          &kp V     &kp B          &kp N        &kp M     &kp COMMA &kp DOT   &soft_off &none
                 
                 // Row 4: 6 Physical Keys + 5 Spacer Matrix Blocks
                 &kp LCTRL &kp LGUI  &kp BACKSPACE  &kp SPACE &bootloader    &sys_reset   &none     &none     &none     &none                 &none
