@@ -1,0 +1,33 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    // Soft-off behavior and key
+    behaviors {
+        soft_off_with_wakeup: soft_off_with_wakeup {
+            compatible = "zmk,behavior-soft-off";
+            #binding-cells = <0>;
+            wakeup-source-positions = <0 0>;
+        };
+    };
+    
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                // Row 1: 11 Physical Keys
+                &kp Q   &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &bootloader
+                
+                // Row 2: 10 Physical Keys + 1 Spacer Matrix Block
+                &kp A   &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SINGLE_QUOTE     &none
+                
+                // Row 3: 10 Physical Keys + 1 Spacer Matrix Block
+                &kp Z &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA     &kp DOT &kp soft_off   &none
+                
+                // Row 4: 6 Physical Keys + 5 Spacer Matrix Blocks
+                &kp LCTRL &kp LGUI  &kp BACKSPACE  &kp SPACE &kp &bootloader  &kp &reset &none     &none     &none     &none     &none
+            >;
+        };
+    };
+};
