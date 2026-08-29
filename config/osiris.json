@@ -1,5 +1,6 @@
 {
-  "name": "osiris"
+  "id": "osiris",
+  "name": "osiris",
   "layouts": {
     "osiris": {
       "layout": [
