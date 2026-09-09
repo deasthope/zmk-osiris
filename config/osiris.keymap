@@ -21,6 +21,13 @@
             require-prior-idle-ms = <80>;
             flavor = "tap-preferred";
         };
+
+        soft_off_hold: soft_off_hold {
+            compatible = "zmk,behavior-soft-off";
+            label = "SOFT_OFF_HOLD";
+            #binding-cells = <0>;
+            hold-time-ms = <3000>;
+        };
     };
 
     combos {
@@ -29,7 +36,7 @@
         Dash {
             bindings = <&kp MINUS>;
             key-positions = <29 28>;
-            layers = <0 2>;
+            layers = <0 2 1>;
             require-prior-idle-ms = <80>;
         };
 
@@ -37,7 +44,7 @@
             bindings = <&kp UNDERSCORE>;
             key-positions = <28 29 30>;
             require-prior-idle-ms = <80>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         Plus {
@@ -51,21 +58,21 @@
             bindings = <&kp KP_EQUAL>;
             key-positions = <29 30>;
             require-prior-idle-ms = <80>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         Semicolon {
             bindings = <&kp SEMICOLON>;
             key-positions = <20 28>;
             require-prior-idle-ms = <80>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         Colon {
             bindings = <&kp COLON>;
             key-positions = <20 29>;
             require-prior-idle-ms = <80>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         DelBT {
@@ -117,10 +124,19 @@
 
         misc {
             bindings = <
-&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &sys_reset    &none        &none   &none  &none  &none  &none  &bt BT_CLR
-&bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &none         &none        &none   &none  &none  &none  &none
-&none          &none          &none          &none         &bootloader  &none   &none  &none  &none  &none
-&none          &tog 1         &out OUT_BLE   &out OUT_USB  &trans       &trans
+&bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2   &none         &none   &none   &none  &none  &none  &none  &bt BT_CLR
+&bt BT_DISC 0   &bt BT_DISC 1  &bt BT_DISC 2  &none         &none   &none   &none  &none  &none  &none
+&soft_off_hold  &none          &none          &none         &none   &none   &none  &none  &none  &none
+&mo 5           &tog 1         &out OUT_BLE   &out OUT_USB  &trans  &trans
+            >;
+        };
+
+        reset {
+            bindings = <
+&sys_reset  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans       &bt BT_CLR_ALL
+&trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
+&trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
