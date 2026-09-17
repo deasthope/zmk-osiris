@@ -4,16 +4,11 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-    // 1. Isolated hardware matrix containing ONLY your LEFT spacebar
     wakeup_scan: wakeup_scan {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
-        
-        // Row d6 maps to P1.09 on the nice!nano v2 chip
-        row-gpios = <&gpio1 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-        
-        // Column d20 maps to P0.13 on the nice!nano v2 chip
-        col-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+        row-gpios = <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        col-gpios = <&gpio0 18 GPIO_ACTIVE_HIGH>;
     };
 
     // 2. Register this single-key layout as the hardware wakeup mechanism
