@@ -3,6 +3,37 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
+/ {
+    // 1. Build an isolated matrix containing ONLY your spacebar pins
+    wakeup_scan: wakeup_scan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        
+        // Rows used by the spacebars: d6 (GPIO pin P0.22 on nice!nano)
+        row-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        
+        // Columns used by the spacebars: d20 (P0.13) and d18 (P0.15)
+        col-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>, 
+                    <&gpio0 15 GPIO_ACTIVE_HIGH>;
+    };
+
+    // 2. Register this isolated layout as the hardware wakeup mechanism
+    soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&wakeup_scan>;
+    };
+
+    // 3. Prevent single bumps by enforcing a two-key simultaneous combo to wake
+    combos {
+        compatible = "zmk,combos";
+        wakeup_combo {
+            timeout-ms = <50>;
+            key-positions = <0 1>; // Node 0 (Left Space) + Node 1 (Right Space)
+            bindings = <&soft_off_waker>;
+        };
+    };
+};
+
 &lt {
     flavor = "hold-preferred";
     tapping-term-ms = <150>;
